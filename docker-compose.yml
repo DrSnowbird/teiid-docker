@@ -1,0 +1,18 @@
+version: '3' 
+services:
+  teiid-docker:
+    image: openkbs/teiid-docker
+    build:
+      context: ./Dockerfile
+    container_name: teiid-docker
+    environment:
+      - USER_ID=${USER_ID:-1000}
+      - GROUP_ID=${GROUP_ID:-1000}
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
+      - 9990:9990
+    volumes:
+      - ./workspace:/home/developer/workspace
+
