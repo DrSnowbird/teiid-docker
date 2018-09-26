@@ -88,7 +88,7 @@ Is this new user going to be used for one AS process to connect to another AS pr
 e.g. for a slave host controller connecting to the master or for a Remoting connection for server to server EJB calls.
 yes/no? no
 ```
-## 
+## Guide for Properties
 ```
 # Properties declaration of users for the realm 'ManagementRealm' which is the default realm
 # for new installations. Further authentication mechanism can be configured
@@ -115,10 +115,9 @@ yes/no? no
 # The following illustrates how an admin user could be defined, this
 # is for illustration only and does not correspond to a usable password.
 #admin=2a0923285184943425d1f53ddd58ec7a
-
 ```
 
-# Resources / References
+# Resources
 - [Containerize Teiid linked with MariaDB](https://developer.jboss.org/wiki/QuickstartExampleWithDockerizedTeiid)
 - [Teiid Designer 11.1 with Eclipse Oxygen](http://teiiddesigner.jboss.org/designer_summary/downloads)
 - [Teiid Cloud - Data Virtualization Services](http://teiid.io/teiid_cloud/)
