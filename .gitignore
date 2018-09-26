@@ -9,3 +9,7 @@ add-user.sh
 tmp*
 *.out
 AddUser.java
+docker-quickstarts
+squirrel-sql
+sqlectron
+

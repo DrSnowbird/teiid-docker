@@ -12,6 +12,7 @@ ENV JBOSS_HOME=${JBOSS_HOME:-/opt/jboss/wildfly}
 #### ----  Teiid  ---- ####
 ###########################
 # Set the TEIID_VERSION env variable
+ARG TEIID_VERSION=${TEIID_VERSION:-11.1.1}
 ENV TEIID_VERSION=${TEIID_VERSION:-11.1.1}
 
 # Download and unzip Teiid server
