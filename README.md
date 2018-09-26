@@ -116,6 +116,23 @@ yes/no? no
 # is for illustration only and does not correspond to a usable password.
 #admin=2a0923285184943425d1f53ddd58ec7a
 ```
+# See Also - Docker-based IDE
+* [openkbs/docker-atom-editor](https://hub.docker.com/r/openkbs/docker-atom-editor/)
+* [openkbs/eclipse-photon-docker](https://hub.docker.com/r/openkbs/eclipse-photon-docker/)
+* [openkbs/eclipse-oxygen-docker](https://hub.docker.com/r/openkbs/eclipse-oxygen-docker/)
+* [openkbs/intellj-docker](https://hub.docker.com/r/openkbs/intellij-docker/)
+* [openkbs/netbeans9-docker](https://hub.docker.com/r/openkbs/netbeans9-docker/)
+* [openkbs/netbeans](https://hub.docker.com/r/openkbs/netbeans/)
+* [openkbs/papyrus-sysml-docker](https://hub.docker.com/r/openkbs/papyrus-sysml-docker/)
+* [openkbs/pycharm-docker](https://hub.docker.com/r/openkbs/pycharm-docker/)
+* [openkbs/scala-ide-docker](https://hub.docker.com/r/openkbs/scala-ide-docker/)
+* [openkbs/sublime-docker](https://hub.docker.com/r/openkbs/sublime-docker/)
+* [openkbs/webstorm-docker](https://hub.docker.com/r/openkbs/webstorm-docker/)
+
+# See Also - Docker-based SQL GUI
+* [Sqlectron SQL GUI at openkbs/sqlectron-docker](https://hub.docker.com/r/openkbs/sqlectron-docker/)
+* [Mysql-Workbench at openkbs/mysql-workbench](https://hub.docker.com/r/openkbs/mysql-workbench/)
+* [PgAdmin4 for PostgreSQL at openkbs/pgadmin-docker](https://hub.docker.com/r/openkbs/pgadmin-docker/)
 
 # Resources
 - [Containerize Teiid linked with MariaDB](https://developer.jboss.org/wiki/QuickstartExampleWithDockerizedTeiid)
