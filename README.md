@@ -136,7 +136,10 @@ yes/no? no
 
 # Resources
 - [Containerize Teiid linked with MariaDB](https://developer.jboss.org/wiki/QuickstartExampleWithDockerizedTeiid)
-- [Teiid Designer 11.1 with Eclipse Oxygen](http://teiiddesigner.jboss.org/designer_summary/downloads)
+- [Teiid Downloads](http://teiid.jboss.org/downloads/)
+- [Teiid Designer 11.1 with Eclipse Oxygen](http://teiiddesigner.jboss.org/designer_summary/downloads.html)
 - [Teiid Cloud - Data Virtualization Services](http://teiid.io/teiid_cloud/)
 - [Deploying Teiid VDB](http://teiid.github.io/teiid-documents/master/content/admin/Deploying_VDBs.html)
+- [JBoss Tools Integration Stack 4.6.0.Final](https://tools.jboss.org/downloads/jbosstools_is/photon/4.6.0.Final.html)
+
 

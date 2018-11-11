@@ -1,0 +1,70 @@
+git clone https://github.com/rareddy/docker-quickstarts.git
+
+cd docker-quickstarts/data-federation
+
+#################################################
+#### ---- MariaDB JDBC Client jar file ---- #####
+#################################################
+wget -O data/mariadb/mariadb-java-client-2.3.0.jar https://downloads.mariadb.com/Connectors/java/connector-java-2.3.0/mariadb-java-client-2.3.0.jar
+
+#################################################
+#### ---- Teiid Docker ---- #####
+#################################################
+# Get the configuration directory of the Teiid into Host container
+docker pull jboss/teiid:latest
+
+docker run -d --name=teiid-docker jboss/teiid:latest
+
+docker cp teiid-docker:/opt/jboss/wildfly/standalone teiid-docker
+
+docker kill teiid-docker
+docker rm teiid-docker
+
+# create and setup MariaDB
+docker pull mariadb:latest
+
+docker create --privileged=true -t -i \
+    -v `pwd`/data/mariadb:/opt/jboss/data-federation/data/mariadb \
+    -e MYSQL_ROOT_PASSWORD=mypass \
+    -e MYSQL_USER=user \
+    -e MYSQL_PASSWORD=mypass \
+    -e MYSQL_DATABASE=accounts \
+    -p 3306:3306 \
+    --name=accounts mariadb
+
+docker start accounts
+
+docker exec -ti accounts bash
+
+#set up database
+mysql -u user --password=mypass accounts < /opt/jboss/data-federation/data/mariadb/accounts.sql
+# supply password as "mypass", my efforts to include on the cmd did not work.
+# exit from shell
+
+#create docker container for Teiid
+docker create --privileged=true -t -i -P \
+    -v `pwd`/teiid-docker/standalone:/opt/jboss/wildfly/standalone \
+    -v `pwd`:/opt/jboss/data-federation \
+    --name=teiid-docker \
+    --link accounts:accounts \
+    jboss/teiid:latest
+
+docker start teiid-docker
+
+#add management user
+docker exec -ti teiid-docker /opt/jboss/wildfly/bin/add-user.sh
+
+#add application user(choose "odata,rest" as groups)
+docker exec -ti teiid-docker /opt/jboss/wildfly/bin/add-user.sh
+
+# lets create data sources and deploy the VDB
+docker exec -ti teiid-docker /opt/jboss/wildfly/bin/jboss-cli.sh --file=/opt/jboss/data-federation/setup.cli
+
+# List all the ports
+docker port teiid-docker
+
+# now using the port forwarding listed for 31000, use a JDBC client to connect to "portfolio" VDB using Teiid JDBC driver and issue any relevent SQL queries. For ex:
+    SELECT ACCOUNT_ID,PORTFOLIO_VALUE FROM "Stocks"."PersonalHoldings";
+
+#useful commands
+docker rm $(docker ps -aq) -- remove all the dead containers

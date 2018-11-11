@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<vdb name="Portfolio" version="1">
+
+    <description>The Portfolio Dynamic VDB</description>
+
+    <!-- 
+      Each model represents a access to one or more sources.
+      The name of the model will be used as a top level schema name
+      for all of the metadata imported from the source.
+    --> 
+    <model name="MarketData">
+        <!-- 
+            Each source represents a translator and data source. There are 
+            pre-defined translators, or you can create one.
+        -->
+        <source name="text-connector" translator-name="file" connection-jndi-name="java:/marketdata-file"/>
+    </model>
+
+    <model name="Accounts">
+        <!-- 
+          JDBC Import settings 
+          
+          importer.useFullSchemaName directs the importer to drop the source 
+          schema from the Teiid object name, so that the Teiid fully qualified name
+          will be in the form of <model name>.<table name>
+        -->
+        <property name="importer.useFullSchemaName" value="false"/>
+           
+         <!--
+            This connector is defined to reference the MariaDB aka MySQL" 
+          -->
+        <source name="mysql-connector" translator-name="mysql5" connection-jndi-name="java:/accounts-ds"/>
+    </model>
+    
+    
+    <model name="Stocks" type="VIRTUAL">
+        <metadata type="DDL"><![CDATA[                
+        CREATE VIEW StockPrices (
+            symbol string, 
+            price bigdecimal
+        ) AS  
+        SELECT SP.symbol, SP.price
+         FROM (EXEC MarketData.getTextFiles('*.txt')) AS f, 
+         TEXTTABLE(f.file COLUMNS symbol string, price bigdecimal HEADER) AS SP;
+                
+        CREATE VIEW Stock (
+            product_id long, 
+            symbol string, 
+            price bigdecimal, 
+            company_name varchar(256)
+        ) AS
+        SELECT  A.ID, S.symbol, S.price, A.COMPANY_NAME
+         FROM StockPrices AS S, Accounts.PRODUCT AS A
+         WHERE S.symbol = A.SYMBOL;  
+
+        CREATE VIEW PersonalHoldings (
+           ACCOUNT_ID long,
+           PORTFOLIO_VALUE bigdecimal
+        ) AS
+        SELECT a.ACCOUNT_ID, sum(b.SHARES_COUNT*d.price) 
+         FROM Accounts.ACCOUNT a 
+         JOIN Accounts.HOLDINGS b ON a.ACCOUNT_ID=b.ACCOUNT_ID 
+         JOIN  PRODUCT c ON b.PRODUCT_ID = c.ID 
+         JOIN StockPrices d ON c.SYMBOL = d.symbol
+         group by a.ACCOUNT_ID;                                   
+        ]]> </metadata>
+    </model>
+    
+</vdb>

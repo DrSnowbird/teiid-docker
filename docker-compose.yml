@@ -3,7 +3,8 @@ services:
   teiid-docker:
     image: openkbs/teiid-docker
     build:
-      context: ./Dockerfile
+      context: .
+      dockerfile: Dockerfile
     container_name: teiid-docker
     environment:
       - USER_ID=${USER_ID:-1000}

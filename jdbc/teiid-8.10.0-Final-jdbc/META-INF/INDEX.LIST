@@ -1,0 +1,15 @@
+JarIndex-Version: 1.0
+
+teiid-common-core-8.10.0.Final.jar
+META-INF
+META-INF/maven
+META-INF/maven/org.jboss.teiid
+META-INF/maven/org.jboss.teiid/teiid-common-core
+org
+org/teiid
+org/teiid/core
+org/teiid/core/crypto
+org/teiid/core/types
+org/teiid/core/types/basic
+org/teiid/core/util
+

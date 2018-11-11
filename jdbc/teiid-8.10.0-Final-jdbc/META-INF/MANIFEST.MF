@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Build-Timestamp: Mon, 2 Mar 2015 10:17:12 -0500
+Implementation-Title: Build
+Implementation-Version: 8.10.0.Final
+Os-Version: 3.15.8-200.fc20.x86_64
+Built-By: shawkins
+Specification-Vendor: JBoss by Red Hat
+Created-By: Apache Maven 3.0.5
+Os-Name: Linux
+Implementation-URL: http://www.jboss.org/teiid/teiid
+Java-Vendor: Oracle Corporation
+Implementation-Vendor: JBoss by Red Hat
+Scm-Revision: 7c30448b32cbcabfbf30100c4cee5c9e52111e7d
+Implementation-Vendor-Id: org.jboss.teiid
+Scm-Url: http://github.com/teiid/teiid/teiid
+Build-Jdk: 1.7.0_65
+Java-Version: 1.7.0_65
+Scm-Connection: scm:git:git://github.com/teiid/teiid.git/teiid
+Os-Arch: amd64
+Specification-Title: Build
+Specification-Version: 8.10.0.Final
+Archiver-Version: Plexus Archiver
+
