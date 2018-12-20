@@ -9,7 +9,6 @@ Image is pulling from openkbs/teiid-docker
 ```
 
 # Build
-If you want to build older Eclipse like "oxygen", you can following instruction in next section
 ```
 ./build.sh
 ```
