@@ -1,4 +1,4 @@
-(copied by original author - not created by me!)
+(copied from original source - not created by me!)
 
 This example is Hello World example of Teiid, where data from a database (MariaDB aka MySQL) and CSV file are integrated using Teiid. Teiid then provides relational access layer on top of this integration.
 
